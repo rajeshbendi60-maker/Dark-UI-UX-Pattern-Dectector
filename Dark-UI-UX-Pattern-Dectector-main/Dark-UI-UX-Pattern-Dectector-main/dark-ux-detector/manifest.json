@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Dark UX Detector",
+  "version": "0.1",
+  "description": "Detects and highlights dark UX patterns",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

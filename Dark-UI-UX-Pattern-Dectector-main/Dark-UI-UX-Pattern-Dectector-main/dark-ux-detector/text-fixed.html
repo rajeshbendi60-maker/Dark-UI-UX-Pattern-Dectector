@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dark UX Fixed Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.5; }
+    .disclaimer { font-size: 14px; color: #000000; margin-bottom: 10px; }
+    button { margin: 5px 0; padding: 8px 12px; font-size: 14px; cursor: pointer; }
+    a { font-size: 14px; color: blue; text-decoration: underline; display: inline-block; margin-bottom: 10px; }
+    label { display: block; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Dark UX Patterns Fixed</h1>
+
+  <!-- 1. Checkbox fixed -->
+  <h2>1. Optional Checkbox</h2>
+  <label>
+    <input type="checkbox"> Subscribe to newsletter (optional)
+  </label>
+
+  <!-- 2. Cancel link visible -->
+  <h2>2. Cancel Link Visible</h2>
+  <a href="#">Cancel subscription</a>
+
+  <!-- 3. Auto-renew text clarified -->
+  <h2>3. Auto-renew Information</h2>
+  <p class="disclaimer">
+    By starting this trial, your subscription will auto-renew monthly. You can cancel anytime before the next billing cycle.
+  </p>
+
+  <!-- 4. Disclaimer readable -->
+  <h2>4. Clear Disclaimer</h2>
+  <p class="disclaimer">
+    *Trial ends in 7 days. Charges apply only if you continue the subscription.
+  </p>
+
+  <!-- 5. Clear CTA button -->
+  <h2>5. Clear Call-To-Action</h2>
+  <p>
+    Click “Start Trial” to begin a 7-day free trial. Subscription auto-renews monthly.
+  </p>
+  <button>Start Trial</button>
+
+  <!-- Optional: prevent extension from highlighting anything -->
+  <script>
+    // Add a special attribute to skip extension scanning
+    document.body.setAttribute('data-skip-scan', 'true');
+  </script>
+</body>
+</html>

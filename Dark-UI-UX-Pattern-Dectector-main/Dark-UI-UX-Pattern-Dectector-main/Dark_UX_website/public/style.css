@@ -1,0 +1,134 @@
+:root{
+  --bg:#0d0f14;
+  --card:#0f1720;
+  --muted:#9aa3b2;
+  --accent:#6F5EF8;
+  --accent2:#5AD3D1;
+  --glass: rgba(255,255,255,0.03);
+}
+
+/* base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg,var(--bg) 0%, #0b0d11 60%);
+  color:#e6eef8;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* topbar */
+.topbar{
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 28px;
+  border-bottom:1px solid rgba(255,255,255,0.02);
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-name{font-weight:700;color:#9fb0ff}
+
+/* buttons & inputs */
+.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:8px 12px;border-radius:8px;cursor:pointer}
+.primary{background:linear-gradient(90deg,var(--accent), var(--accent2));border:none;color:#071427;padding:10px 14px;border-radius:10px;cursor:pointer}
+.container{display:flex;gap:20px;padding:28px;max-width:1280px;margin:18px auto}
+.left{flex:1}
+.right{width:340px;display:flex;flex-direction:column;gap:18px}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:14px;box-shadow: 0 6px 18px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+.card h2,.card h3{margin:0 0 10px 0}
+.muted{color:var(--muted);font-size:13px}
+
+/* scanner layout */
+.scanner-row{display:flex;gap:12px;align-items:center;margin-top:8px}
+.scanner-row input{flex:1;background:var(--glass);border:1px solid rgba(255,255,255,0.03);padding:12px;border-radius:10px;color:inherit}
+.scanner-sub{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.upload{color:var(--muted);cursor:pointer}
+.hint{color:var(--muted);font-size:13px}
+
+/* results */
+.scan-results{margin-top:18px}
+.result-row{display:flex;gap:18px;align-items:center}
+.score-block{flex:1}
+.score-label{font-size:13px;color:var(--muted)}
+.score-value{font-size:28px;font-weight:700;margin:6px 0;padding:6px 12px;border-radius:10px;display:inline-block;background:rgba(255,255,255,0.02)}
+.score-bar{height:10px;background:rgba(255,255,255,0.03);border-radius:8px;overflow:hidden;margin-top:8px}
+#scoreBar{height:100%;width:0;background:var(--accent);transition:width 600ms ease,background 300ms ease}
+.last-checked{min-width:140px}
+
+/* issues */
+.issues-list{margin-top:14px}
+.issues-list ul{list-style:none;padding:0;margin:8px 0}
+.issues-list li{padding:8px;border-radius:8px;margin-bottom:8px;background:rgba(0,0,0,0.2);display:flex;justify-content:space-between;align-items:center;opacity:0;transform:translateY(8px);transition:all 300ms ease}
+.issues-list li.show{opacity:1;transform:none}
+.badge{padding:4px 8px;border-radius:999px;font-size:12px}
+.badge.critical{background:rgba(255,80,80,0.12);color:#ff8a8a;border:1px solid rgba(255,80,80,0.15)}
+.badge.moderate{background:rgba(255,195,80,0.08);color:#ffd59a;border:1px solid rgba(255,195,80,0.12)}
+.badge.safe{background:rgba(80,255,150,0.06);color:#9ef3c6;border:1px solid rgba(80,255,150,0.08)}
+
+/* stats */
+.stat-row{display:flex;gap:12px;justify-content:space-between}
+.stat-name{font-size:13px;color:var(--muted)}
+.stat-value{font-weight:700;font-size:18px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.02)}
+.stat-value.critical{color:#ff8a8a}
+.stat-value.moderate{color:#ffd59a}
+.stat-value.safe{color:#9ef3c6}
+
+/* quick */
+.full{width:100%}
+
+/* toasts */
+#toasts{min-height:40px}
+.toast{
+  margin-bottom:8px;
+  padding:10px 12px;
+  border-radius:10px;
+  background:rgba(0,0,0,0.45);
+  border:1px solid rgba(255,255,255,0.03);
+  display:flex;gap:10px;align-items:center;animation:toastIn .22s ease both;
+}
+@keyframes toastIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* footer */
+.footer{padding:18px;text-align:center;color:var(--muted);font-size:13px;margin-top:18px}
+
+/* responsive */
+@media (max-width:980px){
+  .container{flex-direction:column;padding:16px}
+  .right{width:100%}
+  /* ensure chart area has a stable height so Chart.js won't expand it */
+.card.history {
+  /* fixed/min height for the chart card */
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+/* options panel */
+.card.options label {
+  display: block;
+  margin: 6px 0;
+  font-size: 14px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.card.options input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: var(--accent); /* modern browsers */
+}
+
+
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 200px; /* fixed height */
+}
+
+.chart-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+}

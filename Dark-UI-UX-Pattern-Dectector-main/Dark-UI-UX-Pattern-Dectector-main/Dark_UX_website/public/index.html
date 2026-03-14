@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Byte Busters — Dark UX Scanner</title>
+
+  <!-- styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- socket.io client (optional — remove if you don't run a socket server) -->
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden>
+        <path d="M12 2L3 7v10l9 5 9-5V7l-9-5z" fill="#6F5EF8"/>
+      </svg>
+      <span class="brand-name">Bytes Busters</span>
+    </div>
+
+    <div class="top-actions">
+      <button id="aiBtn" class="ghost">AI Assistant</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="left">
+      <div class="card scanner">
+        <h2>Website Scanner</h2>
+        <p class="muted">Enter website URL to scan for dark UX patterns...</p>
+
+        <div class="scanner-row">
+          <input id="url" type="text" placeholder="https://example.com" value="https://example.com">
+          <button id="scanBtn" class="primary">Scan</button>
+          <button id="stopBtn" class="ghost" disabled>Stop</button>
+        </div>
+
+        <div class="scanner-sub">
+          <label class="upload" for="uploadFile">📤 Or upload HTML file</label>
+          <input id="uploadFile" type="file" accept="text/html" hidden>
+          <div class="hint">Tip: use this demo layout to reproduce the UI feel.</div>
+        </div>
+
+        <div class="scan-results" id="scanResults" aria-live="polite">
+          <div class="result-row">
+            <div class="score-block">
+              <div class="score-label">Trust Score</div>
+              <div class="score-value" id="scoreValue">--</div>
+              <div class="score-bar"><div id="scoreBar"></div></div>
+            </div>
+
+
+            <div class="last-checked">
+              <div class="muted">Last Checked</div>
+              <div id="lastChecked">--</div>
+            </div>
+          </div>
+
+          <div class="issues-list">
+            <h3>Detected Issues</h3>
+            <ul id="issues"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card history">
+  <h3>Recent Scores</h3>
+  <div class="chart-wrap">
+    <canvas id="scoreChart"></canvas>
+  </div>
+</div>
+
+    </section>
+
+    <aside class="right">
+      <div class="card options">
+  <h3>Scan Options</h3>
+  <form id="scanOptions">
+    <label><input type="checkbox" name="prechecked" checked> Pre-checked Checkboxes</label><br>
+    <label><input type="checkbox" name="confirmshaming" checked> Confirmshaming Phrases</label><br>
+    <label><input type="checkbox" name="autorene w" checked> Auto-renew / Forced Continuity</label><br>
+    <label><input type="checkbox" name="scarcity"> Scarcity Tactics</label><br>
+    <label><input type="checkbox" name="nagging"> Nagging Popups</label><br>
+    <label><input type="checkbox" name="hiddenfees"> Hidden Fees</label>
+  </form>
+</div>
+
+      <div class="card stats">
+        <h3>Detection Stats</h3>
+        <div class="stat-row">
+          <div>
+            <div class="stat-name">Critical Issues</div>
+            <div class="stat-value critical" id="critCount">0</div>
+          </div>
+          <div>
+            <div class="stat-name">Moderate Issues</div>
+            <div class="stat-value moderate" id="modCount">0</div>
+          </div>
+          <div>
+            <div class="stat-name">Safe Patterns</div>
+            <div class="stat-value safe" id="safeCount">0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card quick">
+        <h3>Quick Actions</h3>
+        <button id="askAi" class="ghost full">Ask AI Assistant</button>
+      </div>
+
+      <div class="card toasts" id="toasts" aria-live="assertive"></div>
+    </aside>
+  </main>
+
+  <footer class="footer muted"></footer>
+
+  <!-- behaviour -->
+  <script src="script.js"></script>
+</body>
+</html>
